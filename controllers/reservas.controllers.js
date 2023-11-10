@@ -1,3 +1,4 @@
+import { closeConexion } from "../db.js";
 import Reservas from "../models/Reservas.js";
 
 export const getReservasControllers = async (req, res) => {
@@ -5,8 +6,11 @@ export const getReservasControllers = async (req, res) => {
     const reservas = await Reservas.find();
 
     return res.status(200).json(reservas);
+   
   } catch (error) {
     return res.status(400).json(error);
+  }finally{
+    closeConexion()
   }
 };
 
@@ -30,6 +34,8 @@ export const createReservControllers = async (req, res) => {
     return res.status(200).json(reservasaved);
   } catch (error) {
     return res.status(400).json(error);
+  }finally{
+    closeConexion()
   }
 };
 
@@ -53,6 +59,8 @@ export const updateReserveControllers = async (req, res) => {
     return res.status(200).json(reserveupdated);
   } catch (error) {
     return res.status(400).json(error);
+  }finally{
+    closeConexion()
   }
 };
 
@@ -65,6 +73,8 @@ export const getAReserveControllers = async (req, res) => {
     return res.status(200).json(reservedfound);
   } catch (error) {
     return res.status(400).json(error);
+  }finally{
+    closeConexion()
   }
 };
 
@@ -76,5 +86,7 @@ export const deleteReserveControllers = async (req, res) => {
     return res.status(200).json(reservedeleted);
   } catch (error) {
     return res.status(400).json(error);
+  }finally{
+    closeConexion()
   }
 };

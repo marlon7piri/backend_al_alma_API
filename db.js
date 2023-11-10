@@ -1,6 +1,12 @@
 import mongoose from "mongoose";
 import { MONGO_URL } from "./config.js";
 
+
+
+export const closeConexion = () => {
+  mongoose.connection.close();
+};
+
 const ConnectDB = () => {
   try {
     mongoose.connect(MONGO_URL).then(() => {
@@ -8,9 +14,9 @@ const ConnectDB = () => {
     });
   } catch (error) {
     console.log(error);
-  } finally {
-    mongoose.connection.close();
   }
+
+  
 };
 
 export default ConnectDB;
