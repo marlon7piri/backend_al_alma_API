@@ -1,4 +1,4 @@
-import { closeConexion } from "../db.js";
+import closeConexion from "../closeConexionDb.js";
 import Reservas from "../models/Reservas.js";
 
 export const getReservasControllers = async (req, res) => {

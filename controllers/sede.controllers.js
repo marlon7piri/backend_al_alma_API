@@ -1,10 +1,17 @@
+import  closeConexion  from "../closeConexionDb.js";
 import Sede from "../models/Sede.js";
+
 
 export const getSedeControllers = async (req, res) => {
   try {
-    const sedes = await Sede.find();
-
-    return res.status(200).json(sedes);
+    await Sede.find({})
+      .then((sede) => {
+        return res.status(200).json(sede);
+      })
+      .then(() => {
+        closeConexion();
+       
+      });
   } catch (error) {
     return res.status(400).json(error);
   }
@@ -25,22 +32,30 @@ export const createSedeControllers = async (req, res) => {
       telefono: sede.telefono,
     });
 
-    const sedesaved = await newsede.save();
-
-    return res.status(200).json(sedesaved);
+    await newsede
+      .save()
+      .then((sedesaved) => {
+        return res.status(200).json(sedesaved);
+      })
+      .then(() => {
+        closeConexion();
+      });
   } catch (error) {
     return res.status(400).json(error);
   }
 };
 
-
 export const getASedeControllers = async (req, res) => {
   const { id } = req.params;
 
   try {
-    const sedefound = await Sede.findById(id);
-
-    return res.status(200).json(sedefound);
+    await Sede.findById(id)
+      .then((sedefound) => {
+        return res.status(200).json(sedefound);
+      })
+      .then(() => {
+        closeConexion();
+      });
   } catch (error) {
     return res.status(400).json(error);
   }

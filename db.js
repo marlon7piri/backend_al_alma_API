@@ -1,9 +1,7 @@
 import mongoose from "mongoose";
 import { MONGO_URL } from "./config.js";
 
-export const closeConexion = () => {
-  mongoose.connection.close();
-};
+
 
 const ConnectDB = () => {
   try {
