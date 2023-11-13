@@ -1,12 +1,15 @@
-import closeConexion from "../closeConexionDb.js";
+import { closeConexion } from "../closeConexion.js";
 import Sede from "../models/Sede.js";
-import mongoose from "mongoose";
 
-export const getSedeControllers = async (req, res) => {
+export const getSedeControllers = async (req, res, next) => {
   try {
-    await Sede.find({}).then((sede) => {
-      return res.status(200).json(sede);
-    });
+    await Sede.find()
+      .then((sede) => {
+        return res.status(200).json(sede);
+      })
+      .then(() => {
+        next();
+      });
   } catch (error) {
     return res.status(400).json(error);
   }

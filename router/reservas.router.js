@@ -7,6 +7,7 @@ import {
   updateReserveControllers,
 } from "../controllers/reservas.controllers.js";
 import { createSedeControllers, getASedeControllers, getSedeControllers } from "../controllers/sede.controllers.js";
+import { closeConexion } from "../closeConexion.js";
 
 const router = Router();
 

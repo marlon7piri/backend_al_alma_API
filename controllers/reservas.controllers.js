@@ -1,4 +1,4 @@
-import closeConexion from "../closeConexionDb.js";
+import {closeConexion} from "../closeConexion.js";
 import Reservas from "../models/Reservas.js";
 
 export const getReservasControllers = async (req, res) => {
@@ -7,9 +7,6 @@ export const getReservasControllers = async (req, res) => {
       .then((reservas) => {
         return res.status(200).json(reservas);
       })
-      .then(() => {
-        closeConexion();
-      });
   } catch (error) {
     return res.status(400).json(error);
   }
@@ -34,9 +31,6 @@ export const createReservControllers = async (req, res) => {
       .then((reservasaved) => {
         return res.status(200).json(reservasaved);
       })
-      .then(() => {
-        closeConexion();
-      });
   } catch (error) {
     return res.status(400).json(error);
   }
@@ -61,9 +55,6 @@ export const updateReserveControllers = async (req, res) => {
       .then((reserveupdated) => {
         return res.status(200).json(reserveupdated);
       })
-      .then(() => {
-        closeConexion();
-      });
   } catch (error) {
     return res.status(400).json(error);
   }
@@ -77,9 +68,6 @@ export const getAReserveControllers = async (req, res) => {
       .then((reservedfound) => {
         return res.status(200).json(reservedfound);
       })
-      .then(() => {
-        closeConexion();
-      });
   } catch (error) {
     return res.status(400).json(error);
   }
@@ -92,9 +80,6 @@ export const deleteReserveControllers = async (req, res) => {
       .then((reservedeleted) => {
         return res.status(200).json(reservedeleted);
       })
-      .then(() => {
-        closeConexion();
-      });
   } catch (error) {
     return res.status(400).json(error);
   }
